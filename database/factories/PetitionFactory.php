@@ -4,9 +4,10 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Petition>
+ * @extends Factory
  */
 class PetitionFactory extends Factory
 {
@@ -22,10 +23,10 @@ class PetitionFactory extends Factory
         return [
             'title'=>$this->faker->name(),
             'description' => $this->faker->text(200),
-            'patient' => User::where('type','patient')->random()->id,
+            'patient_id' => User::where('type','patient')->inRandomOrder()->first()->id,
             'status' => $status,
-            'doctor' => $status != 'pending'
-                ? User::where('type', 'doctor')->random()->id
+            'doctor_id' => $status != 'pending'
+                ? User::where('type','doctor')->inRandomOrder()->first()->id
                 : null,
         ];
     }

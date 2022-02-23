@@ -14,18 +14,17 @@ class Petition extends Model
         'description',
         'doctor_id',
         'patient_id',
-        'status'
-    ];
+        'status'];
 
     protected $with = ['patient', 'doctor'];
 
-    public function doctor()
+    public function doctor(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class,'id');
+        return $this->belongsTo(User::class);
     }
 
-    public function patient()
+    public function patient(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class,'id');
+        return $this->belongsTo(User::class);
     }
 }

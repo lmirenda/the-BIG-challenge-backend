@@ -22,7 +22,5 @@ class UserTableSeeder extends Seeder
         User::factory([
             'type' => "patient"
         ])->create();
-
-        User::factory(15)->create();
     }
 }
