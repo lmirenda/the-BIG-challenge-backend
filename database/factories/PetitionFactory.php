@@ -23,7 +23,7 @@ class PetitionFactory extends Factory
             'title'=>$this->faker->name(),
             'description' => $this->faker->text(200),
             'patient' => User::where('type','patient')->random()->id,
-            'status' => $status[rand(0,2)],
+            'status' => $status,
             'doctor' => $status != 'pending'
                 ? User::where('type', 'doctor')->random()->id
                 : null,
