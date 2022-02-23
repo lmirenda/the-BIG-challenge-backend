@@ -9,7 +9,13 @@ class Petition extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','description','doctor_id','patient_id','status'];
+    protected $fillable = [
+        'title',
+        'description',
+        'doctor_id',
+        'patient_id',
+        'status'
+    ];
 
     protected $with = ['patient', 'doctor'];
 
