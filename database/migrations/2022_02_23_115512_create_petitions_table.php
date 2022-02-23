@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->foreignId('patient')->constrained('users');
-            $table->foreignId('doctor')->nullable()->constrained('users')->cascadeOnUpdate();
+            $table->foreignId('patient_id')->constrained('users');
+            $table->foreignId('doctor_id')->nullable()->constrained('users')->cascadeOnUpdate();
             $table->enum('status',['pending','in progress','done']);
             $table->timestamps();
         });
