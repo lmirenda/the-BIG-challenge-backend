@@ -44,11 +44,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $with = [
-        'patientPetitions',
-        'doctorPetitions'
-    ];
-
     public function patientPetitions(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Petition::class,'patient_id');
