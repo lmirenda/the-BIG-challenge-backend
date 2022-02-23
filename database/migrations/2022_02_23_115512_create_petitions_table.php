@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('petitions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->enum('type',['patient','doctor']);
+            $table->string('title');
+            $table->text('description');
+            $table->foreignId('patient')->constrained('users');
+            $table->foreignId('doctor')->nullable()->constrained('users')->cascadeOnUpdate();
+            $table->enum('status',['pending','in progress','done']);
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('petitions');
     }
 };
