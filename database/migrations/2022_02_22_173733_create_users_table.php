@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\UserType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,13 +19,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('type', ['patient', 'doctor']);
+            $table->string('type');
             $table->timestamps();
-            $table->text('patient_symptoms');
-            $table->integer('patient_height');
-            $table->integer('patient_weight');
-            $table->integer('patient_phone');
-            $table->text('patient_other_info');
         });
     }
 

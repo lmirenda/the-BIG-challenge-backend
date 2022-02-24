@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\UserType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -21,6 +22,7 @@ class UserFactory extends Factory
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'type' => array_rand(UserType::cases())
         ];
     }
 
@@ -33,12 +35,7 @@ class UserFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'type' => 'patient',
-                'patient_symptoms' => $this->faker->text(200),
-                'patient_height' => $this->faker->numberBetween(1.2,2.1),
-                'patient_weight' => $this->faker->numberBetween(40,200),
-                'patient_phone' => $this->faker->phoneNumber(),
-                'patient_other_info' => $this->faker->text(50)
+                'type' => UserType::PATIENT,
             ];
         });
     }
@@ -47,7 +44,7 @@ class UserFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'type' => 'doctor',
+                'type' => UserType::DOCTOR,
             ];
         });
     }

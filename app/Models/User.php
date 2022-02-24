@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->hasMany(Petition::class,'patient_id');
     }
 
+    public function patientInformation(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Patient::class, 'patient_id');
+    }
+
     public function doctorPetitions(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Petition::class, 'doctor_id');
