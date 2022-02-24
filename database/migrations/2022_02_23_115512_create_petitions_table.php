@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\PetitionStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,7 +20,7 @@ return new class extends Migration
             $table->text('description');
             $table->foreignId('patient_id')->constrained('users');
             $table->foreignId('doctor_id')->nullable()->constrained('users')->cascadeOnUpdate();
-            $table->enum('status',['pending','in progress','done']);
+            $table->string('status');
             $table->timestamps();
         });
     }
