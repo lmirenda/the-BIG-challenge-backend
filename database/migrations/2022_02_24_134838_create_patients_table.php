@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('patient_symptoms');
             $table->integer('patient_height');
             $table->integer('patient_weight');
-            $table->integer('patient_phone');
+            $table->string('patient_phone');
             $table->text('patient_other_info');
         });
     }
