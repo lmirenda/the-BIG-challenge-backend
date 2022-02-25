@@ -44,15 +44,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function typeOf(string $string)
-    {
-    }
-
-    public function patientPetitions(): \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(Petition::class,'patient_id');
-    }
-
     public function patientInformation(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(Patient::class, 'patient_id');
@@ -63,8 +54,4 @@ class User extends Authenticatable
         return $this->hasMany(Petition::class, 'doctor_id');
     }
 
-    public function scopeOfType($query, $type)
-    {
-        return $query->where($query, $type);
-    }
 }
