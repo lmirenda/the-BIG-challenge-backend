@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('patient_id')->constrained('users');
+            $table->foreignId('user_id')->constrained('users');
             $table->integer('patient_height');
             $table->integer('patient_weight');
             $table->string('patient_phone');

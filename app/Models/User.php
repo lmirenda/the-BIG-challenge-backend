@@ -46,7 +46,7 @@ class User extends Authenticatable
 
     public function patientInformation(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->hasOne(Patient::class, 'patient_id');
+        return $this->hasOne(Patient::class, 'user_id');
     }
 
     public function doctorPetitions(): \Illuminate\Database\Eloquent\Relations\HasMany

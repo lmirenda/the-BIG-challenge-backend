@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('symptoms');
-            $table->foreignId('patient_id')->constrained('users');
+            $table->foreignId('patient_id')->references('user_id')->on('patients');
             $table->foreignId('doctor_id')->nullable()->constrained('users')->cascadeOnUpdate();
             $table->string('status');
             $table->timestamps();
