@@ -4,7 +4,9 @@ namespace Database\Factories;
 
 use App\Enums\PetitionStatus;
 use App\Enums\UserType;
+use App\Models\Patient;
 use App\Models\User;
+use App\Utilities\Random;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -20,14 +22,15 @@ class PetitionFactory extends Factory
      */
     public function definition()
     {
-        $status = PetitionStatus::cases();
+        $status = Random::petitionStatus();
+
         return [
             'title'=>$this->faker->name(),
             'description' => $this->faker->text(200),
-            'patient_id' => User::where('type',UserType::PATIENT)->inRandomOrder()->first()->id,
-            'status' => array_rand($status),
+            'patient_id' => Patient::factory(),
+            'status' => $status,
             'doctor_id' => $status != PetitionStatus::PENDING
-                ? User::where('type','doctor')->inRandomOrder()->first()->id
+                ? User::factory()->doctor()
                 : null,
         ];
     }
@@ -36,7 +39,7 @@ class PetitionFactory extends Factory
     {
         return $this->state(function (array $attributes){
             return [
-                'patient_id' => User::where('type','patient')->inRandomOrder()->first()->id,
+                'patient_id' => User::factory()->doctor(),
                 'status' => PetitionStatus::TAKEN
             ];
         });
@@ -46,7 +49,7 @@ class PetitionFactory extends Factory
     {
         return $this->state(function (array $attributes){
             return[
-                'doctor_id' => User::where('type','doctor')->inRandomOrder()->first()->id,
+                'doctor_id' => User::factory()->doctor(),
                 'status' => PetitionStatus::FINISHED
             ];
         });
