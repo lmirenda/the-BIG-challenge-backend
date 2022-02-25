@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Patient;
+use App\Models\Petition;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,12 +17,8 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        User::factory([
-            'type' => "doctor"
-        ])->create();
+        User::factory()->doctor()->create();
 
-        User::factory([
-            'type' => "patient"
-        ])->create();
+        User::factory()->patient()->create();
     }
 }

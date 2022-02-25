@@ -15,6 +15,6 @@ class PetitionTableSeeder extends Seeder
      */
     public function run()
     {
-        Petition::factory()->count(5)->create();
+        Petition::factory()->count(10)->create();
     }
 }
