@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('petitions', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('description');
+            $table->text('symptoms');
             $table->foreignId('patient_id')->constrained('users');
             $table->foreignId('doctor_id')->nullable()->constrained('users')->cascadeOnUpdate();
             $table->string('status');

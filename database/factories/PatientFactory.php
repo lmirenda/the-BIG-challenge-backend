@@ -21,7 +21,6 @@ class PatientFactory extends Factory
 
         return [
             'patient_id' => User::factory()->patient(),
-            'patient_symptoms' => $this->faker->text(200),
             'patient_height'=>$this->faker->randomNumber(3),
             'patient_weight'=>$this->faker->randomNumber(2),
             'patient_phone'=>$this->faker->phoneNumber(),

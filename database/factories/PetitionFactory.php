@@ -26,7 +26,7 @@ class PetitionFactory extends Factory
 
         return [
             'title'=>$this->faker->name(),
-            'description' => $this->faker->text(200),
+            'symptoms' => $this->faker->text(200),
             'patient_id' => Patient::factory(),
             'status' => $status,
             'doctor_id' => $status != PetitionStatus::PENDING

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('patient_id')->constrained('users');
-            $table->text('patient_symptoms');
             $table->integer('patient_height');
             $table->integer('patient_weight');
             $table->string('patient_phone');
