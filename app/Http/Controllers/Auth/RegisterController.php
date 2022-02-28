@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Events\NewUserHasRegistered;
+use App\Events\UserHasRegistered;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -19,7 +19,7 @@ class RegisterController
             'type' => $request->get('type')
         ]);
 
-        event(new NewUserHasRegistered($user));
+        event(new UserHasRegistered($user));
 
         return response()->json([$user]);
     }
