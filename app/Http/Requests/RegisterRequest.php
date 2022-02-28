@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\UserType;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
+use Illuminate\Validation\Rules\Password;
 
 class RegisterRequest extends FormRequest
 {
@@ -26,8 +29,13 @@ class RegisterRequest extends FormRequest
         return [
             'name' => 'required|min:3',
             'email' => 'required|unique|email',
-            'password' => 'required',
-            'type' => 'required', //validar enums
+            'password' => [
+                'required',
+                'confirmed',
+                Password::defaults()],
+            'type' => [
+                'required',
+                new Enum(UserType::class)],
         ];
     }
 }
