@@ -36,8 +36,8 @@ class RegisterRequest extends FormRequest
                 'email'],
             'password' => [
                 'required',
-                'confirmed',
-                Password::defaults()],
+
+                Password::default()],
             'type' => [
                 'required',
                 new Enum(UserType::class)],
