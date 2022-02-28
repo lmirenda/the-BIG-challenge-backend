@@ -1,7 +1,7 @@
 @component('mail::message')
 # Introduction
 
-{{$user['name']}} has registered. 
+{{$user['name']}} has registered.
 
 @component('mail::button', ['url' => ''])
 Button Text

@@ -21,6 +21,6 @@ class RegisterController
 
         event(new NewUserHasRegistered($user));
 
-        return response()->json(['Registration Successful']);
+        return response()->json([$user]);
     }
 }
