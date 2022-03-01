@@ -22,13 +22,5 @@ class ExampleTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
-
-        User::factory()->create();
-        User::factory()->patient()->create();
-        User::factory()->doctor()->create();
-
-        Patient::factory()->create();
-
-        Petition::factory(5)->create();
     }
 }
