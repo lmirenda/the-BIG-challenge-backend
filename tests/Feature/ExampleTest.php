@@ -11,6 +11,7 @@ use Tests\TestCase;
 class ExampleTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
      * A basic test example.
      *
@@ -29,10 +30,5 @@ class ExampleTest extends TestCase
         Patient::factory()->create();
 
         Petition::factory(5)->create();
-
-
-
-
-
     }
 }

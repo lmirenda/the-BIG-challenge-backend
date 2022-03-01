@@ -29,24 +29,24 @@ class RegisterRequest extends FormRequest
         return [
             'name' => [
                 'required',
-                'min:3'
+                'min:3',
             ],
             'email' => [
                 'required',
                 'unique:users',
-                'email'
+                'email',
             ],
             'password' => [
                 'required',
-                Password::default()
+                Password::default(),
             ],
             'confirmed_password' => [
                 'required',
-                'same:password'
+                'same:password',
             ],
             'type' => [
                 'required',
-                new Enum(UserType::class)],
+                new Enum(UserType::class), ],
         ];
     }
 }

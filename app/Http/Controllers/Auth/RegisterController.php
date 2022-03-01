@@ -16,7 +16,7 @@ class RegisterController
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'password' => Hash::make($request->get('password')),
-            'type' => $request->get('type')
+            'type' => $request->get('type'),
         ]);
 
         event(new UserHasRegistered($user));

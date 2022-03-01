@@ -3,12 +3,10 @@
 namespace Database\Factories;
 
 use App\Enums\PetitionStatus;
-use App\Enums\UserType;
 use App\Models\Patient;
 use App\Models\User;
 use App\Utilities\Random;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
  * @extends Factory
@@ -37,20 +35,20 @@ class PetitionFactory extends Factory
 
     public function taken()
     {
-        return $this->state(function (array $attributes){
+        return $this->state(function (array $attributes) {
             return [
                 'patient_id' => User::factory()->doctor(),
-                'status' => PetitionStatus::TAKEN
+                'status' => PetitionStatus::TAKEN,
             ];
         });
     }
 
     public function finished()
     {
-        return $this->state(function (array $attributes){
+        return $this->state(function (array $attributes) {
             return[
                 'doctor_id' => User::factory()->doctor(),
-                'status' => PetitionStatus::FINISHED
+                'status' => PetitionStatus::FINISHED,
             ];
         });
     }

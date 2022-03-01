@@ -2,7 +2,6 @@
 
 namespace Tests\Http\Controllers\Auth;
 
-use App\Enums\UserType;
 use App\Events\UserHasRegistered;
 use App\Mail\RegisterNewUserMail;
 use App\Models\User;
@@ -25,7 +24,7 @@ class RegisterControllerTest extends TestCase
             'email' => 'john@doe.io',
             'password' => 'Password01',
             'confirmed_password' => 'Password01',
-            'type' => Random::userType()
+            'type' => Random::userType(),
         ];
 
         $this
@@ -35,14 +34,13 @@ class RegisterControllerTest extends TestCase
 
     public function test_successful_registration_dispatches_event()
     {
-
         Event::fake();
         $userData = [
             'name' => 'John Doe',
             'email' => 'john@doe.io',
             'password' => 'Password01',
             'confirmed_password' => 'Password01',
-            'type' => Random::userType()
+            'type' => Random::userType(),
         ];
 
         $this
@@ -59,7 +57,7 @@ class RegisterControllerTest extends TestCase
             'email' => 'john@doe.io',
             'password' => 'Password01',
             'confirmed_password' => 'Password01',
-            'type' => Random::userType()
+            'type' => Random::userType(),
         ];
 
         $this
@@ -75,7 +73,7 @@ class RegisterControllerTest extends TestCase
             'email' => 'john@doe.io',
             'password' => 'Password01',
             'confirmed_password' => 'Password02',
-            'type' => Random::userType()
+            'type' => Random::userType(),
         ];
 
         $this
@@ -91,7 +89,7 @@ class RegisterControllerTest extends TestCase
             'email'=>'test@email.io',
             'password' => 'Password01',
             'confirmed_password' => 'Password01',
-            'type' => Random::userType()
+            'type' => Random::userType(),
         ];
 
         $this
@@ -106,7 +104,7 @@ class RegisterControllerTest extends TestCase
             'email'=>'test@email.io',
             'password' => 'Password01',
             'confirmed_password' => 'Password01',
-            'type' => 'other'
+            'type' => 'other',
         ];
         $this
             ->postJson('api/register', $userData)
@@ -120,7 +118,7 @@ class RegisterControllerTest extends TestCase
             'email'=>'test@email.io',
             'password' => 'Password01',
             'confirmed_password' => 'Password01',
-            'type' => Random::userType()
+            'type' => Random::userType(),
         ];
         $this
             ->postJson('api/register', $userData)
@@ -133,25 +131,25 @@ class RegisterControllerTest extends TestCase
             'email'=>'test@email.io',
             'password' => 'Password01',
             'confirmed_password' => 'Password01',
-            'type' => Random::userType()
+            'type' => Random::userType(),
         ];
         $noEmail = [
             'name' => 'John Doe',
             'password' => 'Password01',
             'confirmed_password' => 'Password01',
-            'type' => Random::userType()
+            'type' => Random::userType(),
         ];
         $noPassword = [
             'name' => 'John Doe',
             'email'=>'test@email.io',
             'confirmed_password' => 'Password01',
-            'type' => Random::userType()
+            'type' => Random::userType(),
         ];
         $noConfirmation = [
             'name' => 'John Doe',
             'email'=>'test@email.io',
             'password' => 'Password01',
-            'type' => Random::userType()
+            'type' => Random::userType(),
         ];
         $noType = [
             'name' => 'John Doe',

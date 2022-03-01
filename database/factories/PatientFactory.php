@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Enums\UserType;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,7 +17,6 @@ class PatientFactory extends Factory
      */
     public function definition()
     {
-
         return [
             'patient_id' => User::factory()->patient(),
             'patient_height'=>$this->faker->randomNumber(3),

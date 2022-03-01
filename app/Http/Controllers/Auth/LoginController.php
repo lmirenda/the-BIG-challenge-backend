@@ -10,10 +10,10 @@ class LoginController
 {
     public function __invoke(LoginRequest $request): JsonResponse
     {
-        if(Auth::attempt($request->only('email','password')))
-        {
+        if (Auth::attempt($request->only('email', 'password'))) {
             return response()->json(['Welcome']);
         }
-        return response()->json(['Wrong email and/or password'],422);
+
+        return response()->json(['Wrong email and/or password'], 422);
     }
 }
