@@ -4,10 +4,13 @@ namespace Tests\Feature;
 
 use App\Models\Patient;
 use App\Models\User;
-use PHPUnit\Framework\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class FactoryTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_the_user_factory_states_for_patient_and_doctor()
     {
         $patient = Patient::factory()
@@ -15,5 +18,6 @@ class FactoryTest extends TestCase
                'name' => 'Test Patient',
            ]))
            ->create();
+        $this->assertModelExists($patient);
     }
 }
