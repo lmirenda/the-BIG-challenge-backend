@@ -11,7 +11,7 @@ class RegisterNewUserMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function build()
+    public function build(): RegisterNewUserMail
     {
         return $this->markdown('email.register.register-new-user');
     }
