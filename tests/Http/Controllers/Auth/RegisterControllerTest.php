@@ -18,6 +18,8 @@ class RegisterControllerTest extends TestCase
 
     public function test_new_user_can_be_registered()
     {
+        Event::fake();
+
         $userData = [
             'name' => 'John Doe',
             'email' => 'john@doe.io',
