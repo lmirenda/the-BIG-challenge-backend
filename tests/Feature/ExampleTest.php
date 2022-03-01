@@ -2,9 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Patient;
-use App\Models\Petition;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
