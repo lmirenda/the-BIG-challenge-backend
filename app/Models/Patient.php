@@ -20,6 +20,6 @@ class Patient extends Model
 
     public function petitions(): HasMany
     {
-        return $this->hasMany(Petition::class,'patient_id');
+        return $this->hasMany(Petition::class, 'patient_id');
     }
 }

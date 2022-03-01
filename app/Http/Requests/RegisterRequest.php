@@ -14,7 +14,7 @@ class RegisterRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -24,22 +24,26 @@ class RegisterRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => [
                 'required',
-                'min:3'],
+                'min:3'
+            ],
             'email' => [
                 'required',
                 'unique:users',
-                'email'],
+                'email'
+            ],
             'password' => [
                 'required',
-                Password::default()],
+                Password::default()
+            ],
             'confirmed_password' => [
                 'required',
-                'same:password'],
+                'same:password'
+            ],
             'type' => [
                 'required',
                 new Enum(UserType::class)],
