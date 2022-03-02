@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\PetitionStatus;
+use App\Enums\UserType;
 use App\Models\Patient;
 use App\Models\User;
 use App\Utilities\Random;
@@ -25,10 +26,10 @@ class PetitionFactory extends Factory
         return [
             'title'=>$this->faker->name(),
             'symptoms' => $this->faker->text(200),
-            'patient_id' => Patient::factory(),
+            'patient_id' => Patient::factory()->create(),
             'status' => $status,
-            'doctor_id' => $status != PetitionStatus::PENDING
-                ? User::factory()->doctor()
+            'doctor_id' => $status != PetitionStatus::PENDING->value
+                ? User::factory()->doctor()->create()->assignRole(UserType::DOCTOR->value)
                 : null,
         ];
     }
@@ -37,8 +38,8 @@ class PetitionFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'patient_id' => User::factory()->doctor(),
-                'status' => PetitionStatus::TAKEN,
+                'doctor_id' => User::factory()->doctor()->create()->assignRole(UserType::DOCTOR->value),
+                'status' => PetitionStatus::TAKEN->value,
             ];
         });
     }
@@ -47,8 +48,8 @@ class PetitionFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return[
-                'doctor_id' => User::factory()->doctor(),
-                'status' => PetitionStatus::FINISHED,
+                'doctor_id' => User::factory()->doctor()->create()->assignRole(UserType::DOCTOR->value),
+                'status' => PetitionStatus::FINISHED->value,
             ];
         });
     }
