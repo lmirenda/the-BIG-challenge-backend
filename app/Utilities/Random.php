@@ -11,6 +11,7 @@ class Random
     {
         $types = UserType::cases();
         $typePosition = array_rand($types);
+
         return $types[$typePosition]->value;
     }
 
@@ -18,6 +19,7 @@ class Random
     {
         $statuses = PetitionStatus::cases();
         $statusPosition = array_rand($statuses);
+
         return $statuses[$statusPosition]->value;
     }
 }
