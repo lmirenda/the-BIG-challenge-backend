@@ -63,7 +63,7 @@ class RegisterControllerTest extends TestCase
                     'password' => 'Password01',
                     'confirmed_password' => 'Password01',
                     'type' => Random::userType(),
-            ]]
+            ]],
         ];
     }
 
@@ -105,7 +105,7 @@ class RegisterControllerTest extends TestCase
                 'email'=>'test@email.io',
                 'password' => 'Password01',
                 'confirmed_password' => 'Password01',
-                'type' => 'other'
+                'type' => 'other',
             ]],
             ['short Name' => [
                 'name' => 'Do',
