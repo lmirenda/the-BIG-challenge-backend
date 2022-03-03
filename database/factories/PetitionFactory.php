@@ -29,7 +29,10 @@ class PetitionFactory extends Factory
             'patient_id' => Patient::factory()->create(),
             'status' => $status,
             'doctor_id' => $status != PetitionStatus::PENDING->value
-                ? User::factory()->doctor()->create()->assignRole(UserType::DOCTOR->value)
+                ? User::factory()
+                    ->doctor()
+                    ->create()
+                    ->assignRole(UserType::DOCTOR->value)
                 : null,
         ];
     }
@@ -38,7 +41,10 @@ class PetitionFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'doctor_id' => User::factory()->doctor()->create()->assignRole(UserType::DOCTOR->value),
+                'doctor_id' => User::factory()
+                    ->doctor()
+                    ->create()
+                    ->assignRole(UserType::DOCTOR->value),
                 'status' => PetitionStatus::TAKEN->value,
             ];
         });
@@ -48,7 +54,10 @@ class PetitionFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return[
-                'doctor_id' => User::factory()->doctor()->create()->assignRole(UserType::DOCTOR->value),
+                'doctor_id' => User::factory()
+                    ->doctor()
+                    ->create()
+                    ->assignRole(UserType::DOCTOR->value),
                 'status' => PetitionStatus::FINISHED->value,
             ];
         });
