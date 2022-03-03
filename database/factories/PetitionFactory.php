@@ -62,4 +62,13 @@ class PetitionFactory extends Factory
             ];
         });
     }
+    public function pending()
+    {
+        return $this->state(function (array $attributes) {
+            return[
+                'doctor_id' => null,
+                'status' => PetitionStatus::PENDING->value,
+            ];
+        });
+    }
 }
