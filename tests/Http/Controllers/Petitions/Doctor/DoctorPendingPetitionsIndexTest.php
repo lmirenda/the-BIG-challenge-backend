@@ -23,7 +23,7 @@ class DoctorPendingPetitionsIndexTest extends TestCase
             ->create(['password'=>Hash::make(123456)])
             ->assignRole(UserType::DOCTOR->value);
 
-        Auth::attempt(['email'=>$user->email,'password'=>123456]);
+        Auth::attempt(['email'=>$user->email, 'password'=>123456]);
 
         $this
             ->getJson('api/petitions')
@@ -40,11 +40,10 @@ class DoctorPendingPetitionsIndexTest extends TestCase
             ->create(['password'=>Hash::make(123456)])
             ->assignRole(UserType::PATIENT->value);
 
-        Auth::attempt(['email'=>$user->email,'password'=>123456]);
+        Auth::attempt(['email'=>$user->email, 'password'=>123456]);
 
         $this
             ->getJson('api/petitions')
             ->assertStatus(422);
     }
-
 }
