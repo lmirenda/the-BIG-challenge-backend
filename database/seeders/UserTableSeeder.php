@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\UserType;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -14,8 +15,8 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->doctor()->create();
+        User::factory()->doctor()->create()->assignRole(UserType::DOCTOR->value);
 
-        User::factory()->patient()->create();
+        User::factory()->patient()->create()->assignRole(UserType::DOCTOR->value);
     }
 }

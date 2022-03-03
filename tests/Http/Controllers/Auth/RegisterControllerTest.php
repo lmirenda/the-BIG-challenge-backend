@@ -6,6 +6,7 @@ use App\Events\UserHasRegistered;
 use App\Mail\RegisterNewUserMail;
 use App\Models\User;
 use App\Utilities\Random;
+use Database\Seeders\RoleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
@@ -22,6 +23,7 @@ class RegisterControllerTest extends TestCase
     {
         Event::fake();
         $this
+            ->seed(RoleSeeder::class)
             ->postJson('api/register', $userData)
             ->assertSuccessful();
         Event::assertDispatched(UserHasRegistered::class);
@@ -34,6 +36,7 @@ class RegisterControllerTest extends TestCase
     {
         Mail::fake();
         $this
+            ->seed(RoleSeeder::class)
             ->postJson('api/register', $userData);
 
         Mail::assertSent(RegisterNewUserMail::class, 1);
