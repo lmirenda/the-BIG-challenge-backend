@@ -62,6 +62,7 @@ class PetitionFactory extends Factory
             ];
         });
     }
+
     public function pending()
     {
         return $this->state(function (array $attributes) {

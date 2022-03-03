@@ -3,7 +3,6 @@
 namespace Tests\Http\Controllers\Petitions\Doctor;
 
 use App\Enums\UserType;
-use App\Http\Controllers\Petitions\Doctor\DoctorAcceptPetitionController;
 use App\Models\Petition;
 use App\Models\User;
 use Database\Seeders\RoleSeeder;
@@ -26,10 +25,8 @@ class DoctorAcceptPetitionControllerTest extends TestCase
 
         Auth::attempt(['email' => $user->email, 'password'=>123456]);
 
-
         $this
             ->putJson('api/petitions/accept/'.$petition->id)
             ->assertSuccessful();
     }
-
 }

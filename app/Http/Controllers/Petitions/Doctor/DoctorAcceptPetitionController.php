@@ -17,6 +17,7 @@ class DoctorAcceptPetitionController
                 'status' => PetitionStatus::TAKEN->value,
                 'doctor_id' => Auth::user()->id,
             ]);
+
             return response()->json([$petition]);
         }
 
