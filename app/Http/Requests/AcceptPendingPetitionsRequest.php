@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 use App\Enums\PetitionStatus;
 use App\Models\Petition;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Enum;
 
 class AcceptPendingPetitionsRequest extends FormRequest
 {
@@ -20,6 +19,7 @@ class AcceptPendingPetitionsRequest extends FormRequest
         if ($petition->status === PetitionStatus::PENDING->value) {
             return true;
         }
+
         return false;
     }
 
@@ -34,5 +34,4 @@ class AcceptPendingPetitionsRequest extends FormRequest
 
         ];
     }
-
 }
