@@ -3,23 +3,20 @@
 namespace App\Http\Controllers\Petitions\Doctor;
 
 use App\Enums\PetitionStatus;
+use App\Http\Requests\AcceptPendingPetitionsRequest;
 use App\Models\Petition;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
 class DoctorAcceptPetitionController
 {
-    public function update(Petition $petition): JsonResponse
+    public function update(Petition $petition, AcceptPendingPetitionsRequest $request): JsonResponse
     {
-        if ($petition->status === PetitionStatus::PENDING->value) {
-            $petition->update([
+        $petition->update([
                 'status' => PetitionStatus::TAKEN->value,
                 'doctor_id' => Auth::user()->id,
             ]);
 
-            return response()->json([$petition]);
-        }
-
-        return response()->json(['Error'], 422);
+        return response()->json([$petition]);
     }
 }
