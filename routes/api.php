@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/login', LoginController::class);
 Route::post('/register', RegisterController::class);
-Route::get('/petitions', [DoctorPendingPetitionsIndex::class, 'index']);
+Route::middleware(['role:doctor'])
+    ->get('/petitions', [DoctorPendingPetitionsIndex::class, 'index']);
 Route::middleware(['role:doctor'])
     ->put('petitions/accept/{petition}', [DoctorAcceptPetitionController::class, 'update']);

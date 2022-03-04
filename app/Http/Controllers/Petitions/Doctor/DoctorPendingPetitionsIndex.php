@@ -13,10 +13,6 @@ class DoctorPendingPetitionsIndex extends Controller
 {
     public function index(): JsonResponse
     {
-        if (Auth::user()->hasRole(UserType::DOCTOR->value)) {
-            return response()->json([Petition::where('status', PetitionStatus::PENDING->value)]);
-        }
-
-        return response()->json(['Error'], 422);
+        return response()->json([Petition::where('status', PetitionStatus::PENDING->value)]);
     }
 }

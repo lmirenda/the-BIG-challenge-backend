@@ -44,6 +44,6 @@ class DoctorPendingPetitionsIndexTest extends TestCase
 
         $this
             ->getJson('api/petitions')
-            ->assertStatus(422);
+            ->assertStatus(403);
     }
 }
