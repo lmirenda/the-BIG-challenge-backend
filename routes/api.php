@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Petitions\Doctor\DoctorAcceptedPetitionsIndex ;
+use App\Http\Controllers\Petitions\Doctor\DoctorAcceptedPetitionsIndex;
 use App\Http\Controllers\Petitions\Doctor\DoctorAcceptPetitionController;
 use App\Http\Controllers\Petitions\Doctor\DoctorPendingPetitionsIndex;
 use Illuminate\Http\Request;

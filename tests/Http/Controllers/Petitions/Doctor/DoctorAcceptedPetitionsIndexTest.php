@@ -3,7 +3,6 @@
 namespace Tests\Http\Controllers\Petitions\Doctor;
 
 use App\Enums\UserType;
-use App\Http\Controllers\Petitions\Doctor\DoctorAcceptedPetitionsIndex;
 use App\Models\User;
 use Database\Seeders\RoleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -30,6 +29,7 @@ class DoctorAcceptedPetitionsIndexTest extends TestCase
             ->getJson('api/petitions/accepted')
             ->assertSuccessful();
     }
+
     public function test_patient_cant_access_accepted_petitions_route()
     {
         $this->seed(RoleSeeder::class);
