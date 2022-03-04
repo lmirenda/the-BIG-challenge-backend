@@ -60,6 +60,6 @@ class DoctorAcceptPetitionControllerTest extends TestCase
 
         $this
             ->putJson('api/petitions/accept/'.$petition->id)
-            ->assertStatus(422);
+            ->assertStatus(403);
     }
 }
