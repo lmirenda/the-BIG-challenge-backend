@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Petitions\Doctor\DoctorAcceptedPetitionsIndex ;
 use App\Http\Controllers\Petitions\Doctor\DoctorAcceptPetitionController;
 use App\Http\Controllers\Petitions\Doctor\DoctorPendingPetitionsIndex;
 use Illuminate\Http\Request;
@@ -26,5 +27,7 @@ Route::post('/login', LoginController::class);
 Route::post('/register', RegisterController::class);
 Route::middleware(['role:doctor'])
     ->get('/petitions', [DoctorPendingPetitionsIndex::class, 'index']);
+Route::middleware(['role:doctor'])
+    ->get('/petitions/accepted', [DoctorAcceptedPetitionsIndex::class, 'index']);
 Route::middleware(['role:doctor'])
     ->put('petitions/accept/{petition}', [DoctorAcceptPetitionController::class, 'update']);
