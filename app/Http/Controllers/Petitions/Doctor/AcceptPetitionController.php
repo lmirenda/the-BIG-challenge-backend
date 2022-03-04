@@ -8,9 +8,9 @@ use App\Models\Petition;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
-class DoctorAcceptPetitionController
+class AcceptPetitionController
 {
-    public function update(Petition $petition, AcceptPendingPetitionsRequest $request): JsonResponse
+    public function __invoke(Petition $petition, AcceptPendingPetitionsRequest $request): JsonResponse
     {
         $petition->update([
                 'status' => PetitionStatus::TAKEN->value,

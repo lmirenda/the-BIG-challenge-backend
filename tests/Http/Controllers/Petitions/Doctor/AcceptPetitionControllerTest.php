@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
-class DoctorAcceptPetitionControllerTest extends TestCase
+class AcceptPetitionControllerTest extends TestCase
 {
     use RefreshDatabase;
 

@@ -15,7 +15,7 @@ class AcceptPendingPetitionsRequest extends FormRequest
      */
     public function authorize()
     {
-        $petition = Petition::first();
+        $petition = $this->route('petition');
         if ($petition->status === PetitionStatus::PENDING->value) {
             return true;
         }

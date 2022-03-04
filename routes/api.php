@@ -3,8 +3,8 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Petitions\Doctor\DoctorAcceptedPetitionsIndex;
-use App\Http\Controllers\Petitions\Doctor\DoctorAcceptPetitionController;
-use App\Http\Controllers\Petitions\Doctor\DoctorPendingPetitionsIndex;
+use App\Http\Controllers\Petitions\Doctor\AcceptPetitionController;
+use App\Http\Controllers\Petitions\Doctor\PendingPetitionsIndex;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,8 +26,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', LoginController::class);
 Route::post('/register', RegisterController::class);
 Route::middleware(['role:doctor'])
-    ->get('/petitions', [DoctorPendingPetitionsIndex::class, 'index']);
+    ->get('/petitions', PendingPetitionsIndex::class);
 Route::middleware(['role:doctor'])
     ->get('/petitions/accepted', [DoctorAcceptedPetitionsIndex::class, 'index']);
 Route::middleware(['role:doctor'])
-    ->put('petitions/accept/{petition}', [DoctorAcceptPetitionController::class, 'update']);
+    ->put('petitions/accept/{petition}', AcceptPetitionController::class);

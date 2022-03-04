@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
-class DoctorPendingPetitionsIndexTest extends TestCase
+class PendingPetitionsIndexTest extends TestCase
 {
     use RefreshDatabase;
 
