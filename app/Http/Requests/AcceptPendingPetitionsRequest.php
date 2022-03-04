@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Enums\PetitionStatus;
-use App\Models\Petition;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AcceptPendingPetitionsRequest extends FormRequest

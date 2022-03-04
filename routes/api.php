@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Petitions\Doctor\DoctorAcceptedPetitionsIndex;
 use App\Http\Controllers\Petitions\Doctor\AcceptPetitionController;
+use App\Http\Controllers\Petitions\Doctor\DoctorAcceptedPetitionsIndex;
 use App\Http\Controllers\Petitions\Doctor\PendingPetitionsIndex;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
