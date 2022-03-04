@@ -12,7 +12,7 @@ class DoctorAcceptPetitionController
 {
     public function update(Petition $petition): JsonResponse
     {
-        if (Auth::user()->hasRole(UserType::DOCTOR->value) && $petition->status === PetitionStatus::PENDING->value) {
+        if ($petition->status === PetitionStatus::PENDING->value) {
             $petition->update([
                 'status' => PetitionStatus::TAKEN->value,
                 'doctor_id' => Auth::user()->id,

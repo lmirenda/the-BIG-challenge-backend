@@ -45,7 +45,7 @@ class DoctorAcceptPetitionControllerTest extends TestCase
 
         $this
             ->putJson('api/petitions/accept/'.$petition->id)
-            ->assertStatus(422);
+            ->assertStatus(403);
     }
 
     public function test_user_with_role_doctor_cant_accept_taken_petition()
