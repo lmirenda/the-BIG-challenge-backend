@@ -22,7 +22,6 @@ class PetitionsIndexController extends Controller
             ->where('id', Auth::user()->id)
             ->first();
 
-
         return response()->json($user->petitions);
     }
 }
