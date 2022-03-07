@@ -28,6 +28,6 @@ Route::post('/register', RegisterController::class);
 Route::middleware(['role:doctor'])
     ->get('/petitions', PendingPetitionsIndex::class);
 Route::middleware(['role:doctor'])
-    ->get('/petitions/accepted', [DoctorAcceptedPetitionsIndex::class, 'index']);
+    ->get('/petitions/accepted', DoctorAcceptedPetitionsIndex::class);
 Route::middleware(['role:doctor'])
     ->put('petitions/accept/{petition}', AcceptPetitionController::class);
