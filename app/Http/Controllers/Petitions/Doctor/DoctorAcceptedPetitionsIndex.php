@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DoctorAcceptedPetitionsIndex extends Controller
 {
-    public function index(): JsonResponse
+    public function __invoke(): JsonResponse
     {
         $petition = Petition::where('doctor_id', Auth::user()->id)->paginate(10);
         return response()->json($petition);
