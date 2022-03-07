@@ -8,6 +8,7 @@ use App\Models\Patient;
 use App\Models\User;
 use App\Utilities\Random;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * @extends Factory
@@ -43,7 +44,10 @@ class PetitionFactory extends Factory
             return [
                 'doctor_id' => User::factory()
                     ->doctor()
-                    ->create()
+                    ->create([
+                        'email'=>'test@doctor',
+                        'password' =>Hash::make(123456)
+                    ])
                     ->assignRole(UserType::DOCTOR->value),
                 'status' => PetitionStatus::TAKEN->value,
             ];
