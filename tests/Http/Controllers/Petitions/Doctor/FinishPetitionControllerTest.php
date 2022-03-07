@@ -29,6 +29,7 @@ class FinishPetitionControllerTest extends TestCase
             ->assertJsonFragment([PetitionStatus::FINISHED->value])
             ->assertSuccessful();
     }
+
     public function test_user_with_role_doctor_cant_finish_other_doctors_petition()
     {
         $this->seed(RoleSeeder::class);
@@ -45,6 +46,7 @@ class FinishPetitionControllerTest extends TestCase
             ->putJson('api/petitions/accepted/finish/'.$petition->id)
             ->assertStatus(403);
     }
+
     public function test_user_with_role_patient_cant_finish_doctors_petition()
     {
         $this->seed(RoleSeeder::class);
@@ -61,6 +63,7 @@ class FinishPetitionControllerTest extends TestCase
             ->putJson('api/petitions/accepted/finish/'.$petition->id)
             ->assertStatus(403);
     }
+
     public function test_user_with_role_doctor_cant_finish_pending_petition()
     {
         $this->seed(RoleSeeder::class);
