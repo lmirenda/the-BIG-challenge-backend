@@ -14,5 +14,6 @@ class DoctorAcceptedPetitionsIndex extends Controller
         $petition = Petition::where('doctor_id', Auth::user()->id)->paginate(10);
 
         return response()->json($petition);
+===
     }
 }
