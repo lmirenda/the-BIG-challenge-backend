@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Petitions\Doctor\AcceptPetitionController;
 use App\Http\Controllers\Petitions\Doctor\DoctorAcceptedPetitionsIndex;
+use App\Http\Controllers\Petitions\Doctor\FinishPetitionController;
 use App\Http\Controllers\Petitions\Doctor\PendingPetitionsIndex;
 use App\Http\Controllers\Petitions\Patient\PetitionsIndexController as PetitionsIndexControllerAlias;
 use Illuminate\Http\Request;
@@ -34,3 +35,5 @@ Route::middleware(['role:doctor'])
     ->put('petitions/accept/{petition}', AcceptPetitionController::class);
 Route::middleware(['role:patient'])
     ->get('/my/petitions', PetitionsIndexControllerAlias::class);
+Route::middleware(['role:doctor'])
+    ->put('petitions/accepted/finish/{petition}', FinishPetitionController::class);
