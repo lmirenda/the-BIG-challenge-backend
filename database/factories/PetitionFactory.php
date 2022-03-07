@@ -46,7 +46,7 @@ class PetitionFactory extends Factory
                     ->doctor()
                     ->create([
                         'email'=>'test@doctor',
-                        'password' =>Hash::make(123456)
+                        'password' =>Hash::make(123456),
                     ])
                     ->assignRole(UserType::DOCTOR->value),
                 'status' => PetitionStatus::TAKEN->value,

@@ -12,6 +12,7 @@ class DoctorAcceptedPetitionsIndex extends Controller
     public function __invoke(): JsonResponse
     {
         $petition = Petition::where('doctor_id', Auth::user()->id)->paginate(10);
+
         return response()->json($petition);
     }
 }
