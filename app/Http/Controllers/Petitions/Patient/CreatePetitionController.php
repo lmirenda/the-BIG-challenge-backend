@@ -13,12 +13,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CreatePetitionController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param CreatePetitionRequest $request
-     * @return JsonResponse
-     */
     public function __invoke(CreatePetitionRequest $request): JsonResponse
     {
         $user = User::with('patientInformation.petitions')
