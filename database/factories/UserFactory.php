@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\UserType;
+use App\Models\User;
 use App\Utilities\Random;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -46,6 +47,13 @@ class UserFactory extends Factory
             return [
                 'type' => UserType::DOCTOR->value,
             ];
+        });
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (User $user) {
+            $user->assignRole($user->type);
         });
     }
 }
