@@ -2,12 +2,10 @@
 
 namespace Tests\Http\Controllers\Petitions\Patient;
 
-use App\Enums\UserType;
 use App\Models\User;
 use Database\Seeders\RoleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class PetitionsIndexControllerTest extends TestCase
@@ -17,12 +15,9 @@ class PetitionsIndexControllerTest extends TestCase
     public function test_patient_can_see_their_petitions()
     {
         $this->seed(RoleSeeder::class);
-        $user = User::factory()
-            ->patient()
-            ->create(['password'=>Hash::make(123456)])
-            ->assignRole(UserType::PATIENT->value);
-
-        Auth::attempt(['email' => $user->email, 'password' => 123456]);
+        Sanctum::actingAs(
+            User::factory()->patient()->create()
+        );
 
         $this
             ->getJson('api/my/petitions')
