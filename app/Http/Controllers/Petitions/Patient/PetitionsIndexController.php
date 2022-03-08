@@ -10,12 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class PetitionsIndexController extends Controller
 {
-    public function __invoke(): JsonResponse
+    public function __invoke(Request $request): JsonResponse
     {
-        $user = User::with('patientInformation.petitions')
-            ->where('id', Auth::user()->id)
-            ->first();
-
-        return response()->json([$user->petitions]);
+        return response()->json([$request->user()->petitions]);
     }
 }
