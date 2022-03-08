@@ -22,17 +22,18 @@ class CreatePetitionControllerTest extends TestCase
             ->patient()
             ->create(['password'=>Hash::make(123456)])
             ->assignRole(UserType::PATIENT->value);
-        Auth::attempt(['email'=>$user->email,'password'=>123456]);
+        Auth::attempt(['email'=>$user->email, 'password'=>123456]);
         Patient::factory()->create(['user_id'=>$user->id]);
         $petitionData = [
             'title' => 'Test title.',
-            'symptoms' => 'This are the symptoms.'
+            'symptoms' => 'This are the symptoms.',
         ];
         $this
             ->assertAuthenticated()
             ->postJson('api/petitions/create', $petitionData)
             ->assertSuccessful();
     }
+
     public function test_doctor_cant_create_a_petition()
     {
         $this->seed(RoleSeeder::class);
@@ -40,16 +41,17 @@ class CreatePetitionControllerTest extends TestCase
             ->doctor()
             ->create(['password'=>Hash::make(123456)])
             ->assignRole(UserType::DOCTOR->value);
-        Auth::attempt(['email'=>$user->email,'password'=>123456]);
+        Auth::attempt(['email'=>$user->email, 'password'=>123456]);
         $petitionData = [
             'title' => 'Test title.',
-            'symptoms' => 'This are the symptoms.'
+            'symptoms' => 'This are the symptoms.',
         ];
         $this
             ->assertAuthenticated()
             ->postJson('api/petitions/create', $petitionData)
             ->assertForbidden();
     }
+
     public function test_logged_out_patient_cant_create_a_petition()
     {
         $this->seed(RoleSeeder::class);
@@ -60,7 +62,7 @@ class CreatePetitionControllerTest extends TestCase
         Patient::factory()->create(['user_id'=>$user->id]);
         $petitionData = [
             'title' => 'Test title.',
-            'symptoms' => 'This are the symptoms.'
+            'symptoms' => 'This are the symptoms.',
         ];
         $this
             ->postJson('api/petitions/create', $petitionData)

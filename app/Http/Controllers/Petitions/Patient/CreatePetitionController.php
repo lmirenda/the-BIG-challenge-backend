@@ -30,8 +30,9 @@ class CreatePetitionController extends Controller
             'symptoms' => $request->get('symptoms'),
             'patient_id' => $user->patientInformation->id,
             'doctor_id' => null,
-            'status' => PetitionStatus::PENDING->value
+            'status' => PetitionStatus::PENDING->value,
         ]);
+
         return response()->json([$petition]);
     }
 }

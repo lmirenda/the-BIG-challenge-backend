@@ -18,6 +18,7 @@ class CreatePetitionRequest extends FormRequest
         if (Auth::user()->hasRole(UserType::PATIENT->value)) {
             return true;
         }
+
         return false;
     }
 
@@ -30,7 +31,7 @@ class CreatePetitionRequest extends FormRequest
     {
         return [
             'title'=>['required', 'min:3'],
-            'symptoms' => ['required', 'min:10']
+            'symptoms' => ['required', 'min:10'],
         ];
     }
 }

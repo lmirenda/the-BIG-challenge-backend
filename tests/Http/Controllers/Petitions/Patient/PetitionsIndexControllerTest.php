@@ -3,7 +3,6 @@
 namespace Tests\Http\Controllers\Petitions\Patient;
 
 use App\Enums\UserType;
-use App\Http\Controllers\Petitions\Patient\PetitionsIndexController;
 use App\Models\User;
 use Database\Seeders\RoleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -13,7 +12,6 @@ use Tests\TestCase;
 
 class PetitionsIndexControllerTest extends TestCase
 {
-
     use RefreshDatabase;
 
     public function test_patient_can_see_their_petitions()
@@ -30,5 +28,4 @@ class PetitionsIndexControllerTest extends TestCase
             ->getJson('api/my/petitions')
             ->assertSuccessful();
     }
-
 }
