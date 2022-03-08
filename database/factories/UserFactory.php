@@ -6,6 +6,9 @@ use App\Enums\UserType;
 use App\Models\User;
 use App\Utilities\Random;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use mysql_xdevapi\Exception;
+use Spatie\Permission\Exceptions\RoleAlreadyExists;
+use Spatie\Permission\Models\Role;
 
 /**
  * @extends Factory
@@ -53,6 +56,11 @@ class UserFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (User $user) {
+            try {
+                Role::create(['name' => $user->type]);
+            } catch (RoleAlreadyExists $exception) {
+                // Do nothing
+            }
             $user->assignRole($user->type);
         });
     }

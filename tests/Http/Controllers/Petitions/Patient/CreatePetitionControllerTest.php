@@ -4,7 +4,6 @@ namespace Tests\Http\Controllers\Petitions\Patient;
 
 use App\Models\Patient;
 use App\Models\User;
-use Database\Seeders\RoleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
@@ -15,7 +14,6 @@ class CreatePetitionControllerTest extends TestCase
 
     public function test_patient_can_create_a_petition()
     {
-        $this->seed(RoleSeeder::class);
 
         $user = Sanctum::actingAs(
             User::factory()->patient()->create()
@@ -34,7 +32,6 @@ class CreatePetitionControllerTest extends TestCase
 
     public function test_doctor_cant_create_a_petition()
     {
-        $this->seed(RoleSeeder::class);
         Sanctum::actingAs(
             User::factory()->doctor()->create()
         );
