@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Enums\UserType;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 class CreatePetitionRequest extends FormRequest
 {

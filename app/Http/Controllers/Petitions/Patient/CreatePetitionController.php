@@ -6,10 +6,7 @@ use App\Enums\PetitionStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreatePetitionRequest;
 use App\Models\Petition;
-use App\Models\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class CreatePetitionController extends Controller
 {
