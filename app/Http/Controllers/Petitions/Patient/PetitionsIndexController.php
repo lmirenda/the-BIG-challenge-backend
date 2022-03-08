@@ -13,15 +13,14 @@ class PetitionsIndexController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param Request $request
      * @return JsonResponse
      */
-    public function __invoke(Request $request): JsonResponse
+    public function __invoke(): JsonResponse
     {
         $user = User::with('patientInformation.petitions')
             ->where('id', Auth::user()->id)
             ->first();
 
-        return response()->json($user->petitions);
+        return response()->json([$user->petitions]);
     }
 }
