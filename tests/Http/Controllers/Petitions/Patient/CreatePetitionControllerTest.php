@@ -14,7 +14,6 @@ class CreatePetitionControllerTest extends TestCase
 
     public function test_patient_can_create_a_petition()
     {
-
         $user = Sanctum::actingAs(
             User::factory()->patient()->create()
         );

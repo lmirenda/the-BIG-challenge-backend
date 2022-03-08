@@ -6,7 +6,6 @@ use App\Enums\UserType;
 use App\Models\User;
 use App\Utilities\Random;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use mysql_xdevapi\Exception;
 use Spatie\Permission\Exceptions\RoleAlreadyExists;
 use Spatie\Permission\Models\Role;
 
