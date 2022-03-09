@@ -21,5 +21,4 @@ class DoctorHasResponded
     {
         $this->user = $user;
     }
-
 }

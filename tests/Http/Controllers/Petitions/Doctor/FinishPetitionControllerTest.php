@@ -5,7 +5,6 @@ namespace Tests\Http\Controllers\Petitions\Doctor;
 use App\Enums\PetitionStatus;
 use App\Enums\UserType;
 use App\Events\DoctorHasResponded;
-use App\Events\UserHasRegistered;
 use App\Models\Petition;
 use App\Models\User;
 use Database\Seeders\RoleSeeder;
@@ -32,7 +31,6 @@ class FinishPetitionControllerTest extends TestCase
             ->assertJsonFragment([PetitionStatus::FINISHED->value])
             ->assertSuccessful();
         Event::assertDispatched(DoctorHasResponded::class);
-
     }
 
     public function test_user_with_role_doctor_cant_finish_other_doctors_petition()
