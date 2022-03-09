@@ -41,3 +41,6 @@ jobs:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
         run: vendor/bin/phpunit
+      - name: Execute Code Static Analysis (PHP Stan + Larastan)
+        run: |
+          vendor/bin/phpstan analyse --level=4 --no-progress

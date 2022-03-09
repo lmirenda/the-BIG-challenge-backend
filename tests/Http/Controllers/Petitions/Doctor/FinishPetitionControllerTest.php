@@ -18,7 +18,6 @@ class FinishPetitionControllerTest extends TestCase
 
     public function test_user_with_role_doctor_can_finish_accepted_petition()
     {
-        $this->seed(RoleSeeder::class);
         $petition = Petition::factory()->taken()->create();
         Auth::attempt(['email' => 'test@doctor', 'password'=>123456]);
 

@@ -6,5 +6,4 @@ enum UserType: string
 {
     case DOCTOR = 'doctor';
     case PATIENT = 'patient';
-
 }

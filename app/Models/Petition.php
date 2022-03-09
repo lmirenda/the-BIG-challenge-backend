@@ -11,7 +11,7 @@ class Petition extends Model
 
     protected $fillable = [
         'title',
-        'description',
+        'symptoms',
         'doctor_id',
         'patient_id',
         'status', ];
