@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Petitions\Doctor\AcceptPetitionController;
 use App\Http\Controllers\Petitions\Doctor\DoctorAcceptedPetitionsIndex;
 use App\Http\Controllers\Petitions\Doctor\FinishPetitionController;
+use App\Http\Controllers\Petitions\Doctor\PatientsIndex;
 use App\Http\Controllers\Petitions\Doctor\PendingPetitionsIndex;
 use App\Http\Controllers\Petitions\Patient\CreatePetitionController;
 use App\Http\Controllers\Petitions\Patient\PetitionsIndexController;
@@ -30,6 +31,8 @@ Route::post('/login', LoginController::class);
 Route::post('/register', RegisterController::class);
 Route::middleware(['role:doctor'])
     ->get('/petitions', PendingPetitionsIndex::class);
+Route::middleware(['role:doctor'])
+    ->get('/patients', PatientsIndex::class);
 Route::middleware(['role:doctor'])
     ->get('/petitions/accepted', DoctorAcceptedPetitionsIndex::class);
 Route::middleware(['role:doctor'])
