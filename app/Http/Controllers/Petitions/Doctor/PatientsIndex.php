@@ -13,6 +13,7 @@ class PatientsIndex extends Controller
         $users = User::where('type', UserType::PATIENT->value)
             ->with('patientInformation.petitions')
             ->get();
+
         return response()->json($users);
     }
 }
