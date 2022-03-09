@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Enums\PetitionStatus;
+use App\Models\Petition;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,6 +16,7 @@ class FinishPetitionRequest extends FormRequest
      */
     public function authorize()
     {
+        /** @var Petition $petition */
         $petition = $this->route('petition');
         if (
             $petition->status === PetitionStatus::TAKEN->value
