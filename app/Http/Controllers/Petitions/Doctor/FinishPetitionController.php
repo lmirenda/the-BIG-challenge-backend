@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Petitions\Doctor;
 
 use App\Enums\PetitionStatus;
+use App\Events\DoctorHasResponded;
+use App\Events\UserHasRegistered;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FinishPetitionRequest;
 use App\Models\Petition;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 
 class FinishPetitionController extends Controller
@@ -15,6 +18,9 @@ class FinishPetitionController extends Controller
         $petition->update([
             'status' => PetitionStatus::FINISHED->value,
         ]);
+        $user = User::where('id', $petition->patient->user_id);
+
+        event(new DoctorHasResponded($user));
 
         return response()->json([$petition]);
     }
