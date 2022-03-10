@@ -8,7 +8,6 @@ use App\Models\Patient;
 use App\Models\User;
 use App\Utilities\Random;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
 
 /**
  * @extends Factory

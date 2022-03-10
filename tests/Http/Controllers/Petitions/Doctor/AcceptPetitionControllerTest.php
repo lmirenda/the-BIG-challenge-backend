@@ -3,13 +3,10 @@
 namespace Tests\Http\Controllers\Petitions\Doctor;
 
 use App\Enums\PetitionStatus;
-use App\Enums\UserType;
 use App\Models\Petition;
 use App\Models\User;
 use Database\Seeders\RoleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 

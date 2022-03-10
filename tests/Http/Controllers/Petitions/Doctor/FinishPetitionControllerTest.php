@@ -6,7 +6,6 @@ use App\Enums\PetitionStatus;
 use App\Enums\UserType;
 use App\Events\DoctorHasResponded;
 use App\Mail\PetitionFinishedMail;
-use App\Mail\RegisterNewUserMail;
 use App\Models\Petition;
 use App\Models\User;
 use Database\Seeders\RoleSeeder;
@@ -37,6 +36,7 @@ class FinishPetitionControllerTest extends TestCase
             ->assertSuccessful();
         Event::assertDispatched(DoctorHasResponded::class);
     }
+
     public function test_finishing_a_petition_queues_email_notification()
     {
         Mail::fake();
@@ -50,7 +50,6 @@ class FinishPetitionControllerTest extends TestCase
                 ->assertJsonMissing([PetitionStatus::TAKEN->value])
                 ->assertSuccessful();
         Mail::assertQueued(PetitionFinishedMail::class, 1);
-
     }
 
     public function test_user_with_role_doctor_cant_finish_other_doctors_petition()
