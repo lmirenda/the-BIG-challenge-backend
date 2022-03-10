@@ -17,7 +17,7 @@ class FinishPetitionController extends Controller
         $petition->update([
             'status' => PetitionStatus::FINISHED->value,
         ]);
-        $user = User::where('id', $petition->patient->user_id);
+        $user = User::where('id', $petition->patient->user_id)->first();
 
         event(new DoctorHasResponded($user));
 
