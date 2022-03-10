@@ -7,7 +7,6 @@ use App\Events\DoctorHasResponded;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FinishPetitionRequest;
 use App\Models\Petition;
-use App\Models\User;
 use Illuminate\Http\JsonResponse;
 
 class FinishPetitionController extends Controller
