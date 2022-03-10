@@ -39,7 +39,7 @@ class RegisterControllerTest extends TestCase
             ->seed(RoleSeeder::class)
             ->postJson('api/register', $userData);
 
-        Mail::assertSent(RegisterNewUserMail::class, 1);
+        Mail::assertQueued(RegisterNewUserMail::class, 1);
     }
 
     /**
