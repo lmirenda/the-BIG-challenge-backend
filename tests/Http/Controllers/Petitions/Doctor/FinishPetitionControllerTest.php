@@ -4,11 +4,13 @@ namespace Tests\Http\Controllers\Petitions\Doctor;
 
 use App\Enums\PetitionStatus;
 use App\Enums\UserType;
+use App\Events\DoctorHasResponded;
 use App\Models\Petition;
 use App\Models\User;
 use Database\Seeders\RoleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
@@ -18,6 +20,7 @@ class FinishPetitionControllerTest extends TestCase
 
     public function test_user_with_role_doctor_can_finish_accepted_petition()
     {
+        Event::fake();
         $petition = Petition::factory()->taken()->create();
         Auth::attempt(['email' => 'test@doctor', 'password'=>123456]);
 
@@ -27,6 +30,7 @@ class FinishPetitionControllerTest extends TestCase
             ->assertJsonMissing([PetitionStatus::TAKEN->value])
             ->assertJsonFragment([PetitionStatus::FINISHED->value])
             ->assertSuccessful();
+        Event::assertDispatched(DoctorHasResponded::class);
     }
 
     public function test_user_with_role_doctor_cant_finish_other_doctors_petition()
