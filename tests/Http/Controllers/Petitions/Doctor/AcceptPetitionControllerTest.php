@@ -3,13 +3,11 @@
 namespace Tests\Http\Controllers\Petitions\Doctor;
 
 use App\Enums\PetitionStatus;
-use App\Enums\UserType;
 use App\Models\Petition;
 use App\Models\User;
 use Database\Seeders\RoleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class AcceptPetitionControllerTest extends TestCase
@@ -20,11 +18,7 @@ class AcceptPetitionControllerTest extends TestCase
     {
         $this->seed(RoleSeeder::class);
         $petition = Petition::factory()->pending()->create();
-        $user = User::factory()
-            ->create(['password'=>Hash::make(123456)])
-            ->assignRole(UserType::DOCTOR->value);
-
-        Auth::attempt(['email' => $user->email, 'password'=>123456]);
+        Sanctum::actingAs(User::factory()->doctor()->create());
 
         $this
             ->putJson('api/petitions/accept/'.$petition->id)
@@ -35,28 +29,17 @@ class AcceptPetitionControllerTest extends TestCase
 
     public function test_user_without_role_doctor_cant_accept_pending_petition()
     {
-        $this->seed(RoleSeeder::class);
         $petition = Petition::factory()->pending()->create();
-        $user = User::factory()
-            ->create(['password'=>Hash::make(123456)])
-            ->assignRole(UserType::PATIENT->value);
-
-        Auth::attempt(['email' => $user->email, 'password'=>123456]);
+        Sanctum::actingAs(User::factory()->patient()->create());
 
         $this
-            ->putJson('api/petitions/accept/'.$petition->id)
-            ->assertStatus(403);
+            ->putJson('api/petitions/accept/'.$petition->id)->assertStatus(403);
     }
 
     public function test_user_with_role_doctor_cant_accept_taken_petition()
     {
-        $this->seed(RoleSeeder::class);
         $petition = Petition::factory()->taken()->create();
-        $user = User::factory()
-            ->create(['password'=>Hash::make(123456)])
-            ->assignRole(UserType::DOCTOR->value);
-
-        Auth::attempt(['email' => $user->email, 'password'=>123456]);
+        Sanctum::actingAs(User::factory()->doctor()->create());
 
         $this
             ->putJson('api/petitions/accept/'.$petition->id)
