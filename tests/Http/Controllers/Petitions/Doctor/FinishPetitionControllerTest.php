@@ -2,13 +2,13 @@
 
 namespace Tests\Http\Controllers\Petitions\Doctor;
 
-use Illuminate\Http\UploadedFile;
 use App\Enums\PetitionStatus;
 use App\Events\DoctorHasResponded;
 use App\Mail\PetitionFinishedMail;
 use App\Models\Petition;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;

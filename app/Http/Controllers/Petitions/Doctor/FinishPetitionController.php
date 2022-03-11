@@ -15,15 +15,14 @@ class FinishPetitionController extends Controller
     public function __invoke(Petition $petition, FinishPetitionRequest $request): JsonResponse
     {
         if ($request->hasFile('file')) {
-
-            $fileName = Str::random(16) . time() . ".txt";
+            $fileName = Str::random(16).time().'.txt';
             $request
                 ->file('file')
                 ->storeAs('public/petition_files', $fileName);
 
             $petition->update([
                 'status' => PetitionStatus::FINISHED->value,
-                'file' => $fileName
+                'file' => $fileName,
             ]);
             $user = $petition->patient->user;
 
@@ -31,6 +30,7 @@ class FinishPetitionController extends Controller
 
             return response()->json([$petition]);
         }
+
         return response()->json(['error']);
     }
 }
