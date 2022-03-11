@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\DownloadPetitionRequest;
 use App\Models\Petition;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use function response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class DownloadPetitionController extends Controller
 {
@@ -22,6 +22,7 @@ class DownloadPetitionController extends Controller
     {
         $name = $petition->file;
         $pathToFile = '../storage/app/public/petition_files/'.$name;
+
         return response()->download($pathToFile);
     }
 }

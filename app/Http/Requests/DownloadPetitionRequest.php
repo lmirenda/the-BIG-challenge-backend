@@ -10,12 +10,13 @@ class DownloadPetitionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-    * @return bool
+     * @return bool
      */
     public function authorize()
     {
         /** @var Petition $petition */
         $petition = $this->route('petition');
+
         return $petition->status === PetitionStatus::FINISHED->value;
     }
 
