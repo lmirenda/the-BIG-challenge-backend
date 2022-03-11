@@ -36,7 +36,7 @@ class FinishPetitionRequest extends FormRequest
     public function rules()
     {
         return [
-
+            'file' => 'required|mimes:txt'
         ];
     }
 }
