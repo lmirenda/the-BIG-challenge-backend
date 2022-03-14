@@ -22,12 +22,11 @@ class FinishPetitionControllerTest extends TestCase
     public function test_user_with_role_doctor_can_finish_accepted_petition()
     {
         Event::fake();
-        Storage::fake('petition_files');
-        $file = UploadedFile::fake()->create('petition_response.txt');
+        Storage::fake('s3');
 
         $petition = Petition::factory()->taken()->create();
         Sanctum::actingAs($petition->doctor);
-
+        $file = UploadedFile::fake()->create('petition_response.txt', 10, 'application/txt');
         $this
             ->assertAuthenticated()
             ->putJson('api/petitions/accepted/finish/'.$petition->id, ['file' => $file])
@@ -35,7 +34,8 @@ class FinishPetitionControllerTest extends TestCase
             ->assertJsonFragment([PetitionStatus::FINISHED->value])
             ->assertSuccessful();
         Event::assertDispatched(DoctorHasResponded::class);
-//        Storage::disk('petition_response')->assertExists($file);
+        $petition->refresh();
+        Storage::disk('s3')->assertExists($petition->file);
     }
 
     public function test_finishing_a_petition_queues_email_notification()
