@@ -17,7 +17,7 @@ class DownloadPetitionController
      */
     public function __invoke(Petition $petition, DownloadPetitionRequest $request): string
     {
-        if (config('filesystem.default' === 's3')) {
+        if (config('filesystems.default')==='s3') {
             return response()->json([Storage::temporaryUrl(
                 $petition->file,
                 now()->addMinutes(5)
