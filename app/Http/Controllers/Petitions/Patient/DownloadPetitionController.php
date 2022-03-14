@@ -21,9 +21,10 @@ class DownloadPetitionController
             return response()->json([Storage::temporaryUrl(
                 $petition->file,
                 now()->addMinutes(5)
-            )
+            ),
         ]);
         }
+
         return response()->json([Storage::url($petition->file)]);
     }
 }

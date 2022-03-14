@@ -6,7 +6,6 @@ use App\Models\Petition;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
@@ -22,7 +21,7 @@ class DownloadPetitionRequestTest extends TestCase
 
         $this
             ->assertAuthenticated()
-            ->getJson('/api/petitions/download/' . $petition->id)
+            ->getJson('/api/petitions/download/'.$petition->id)
             ->assertForbidden();
     }
 
@@ -34,7 +33,7 @@ class DownloadPetitionRequestTest extends TestCase
 
         $this
             ->assertAuthenticated()
-            ->getJson('/api/petitions/download/' . $petition->id)
+            ->getJson('/api/petitions/download/'.$petition->id)
             ->assertForbidden();
     }
 }
