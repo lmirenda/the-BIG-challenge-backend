@@ -8,29 +8,27 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FinishPetitionRequest;
 use App\Models\Petition;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class FinishPetitionController extends Controller
 {
     public function __invoke(Petition $petition, FinishPetitionRequest $request): JsonResponse
     {
-        if ($request->hasFile('file')) {
-            $fileName = Str::uuid().'.txt';
-            $request
-                ->file('file')
-                ->storeAs('public/petition_files', $fileName);
+        $fileName = Str::uuid().'.txt';
+        $file = $request->file('file');
 
-            $petition->update([
+        Storage::put($fileName, $file);
+
+        $petition->update([
                 'status' => PetitionStatus::FINISHED->value,
                 'file' => $fileName,
             ]);
-            $user = $petition->patient->user;
 
-            event(new DoctorHasResponded($user));
+        $user = $petition->patient->user;
 
-            return response()->json([$petition]);
-        }
+        event(new DoctorHasResponded($user));
 
-        return response()->json(['error']);
+        return response()->json([$petition]);
     }
 }

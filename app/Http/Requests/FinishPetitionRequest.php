@@ -36,7 +36,8 @@ class FinishPetitionRequest extends FormRequest
     public function rules()
     {
         return [
-            'file' => 'required|mimes:txt',
+            //TODO: Validate txt file extension
+            'file' => 'required',
         ];
     }
 }
