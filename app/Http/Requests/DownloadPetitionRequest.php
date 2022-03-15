@@ -20,7 +20,6 @@ class DownloadPetitionRequest extends FormRequest
 
         return $petition->status === PetitionStatus::FINISHED->value &&
             $petition->patient->user->id === Auth::user()->id;
-
     }
 
     /**
