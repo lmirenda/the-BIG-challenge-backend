@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 
 class DownloadPetitionController
+
 {
     /**
      * Handle the incoming request.
@@ -27,5 +28,6 @@ class DownloadPetitionController
         }
 
         return response()->json([Storage::url($petition->file)]);
+
     }
 }
