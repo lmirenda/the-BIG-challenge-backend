@@ -2,27 +2,30 @@
 
 namespace App\Http\Controllers\Petitions\Patient;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\DownloadPetitionRequest;
 use App\Models\Petition;
-use Illuminate\Http\Request;
-use function response;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Storage;
 
-class DownloadPetitionController extends Controller
+class DownloadPetitionController
 {
     /**
      * Handle the incoming request.
      *
      * @param Petition $petition
      * @param DownloadPetitionRequest $request
-     * @return BinaryFileResponse
+     * @return JsonResponse
      */
-    public function __invoke(Petition $petition, DownloadPetitionRequest $request): BinaryFileResponse
+    public function __invoke(Petition $petition, DownloadPetitionRequest $request): JsonResponse
     {
-        $name = $petition->file;
-        $pathToFile = '../storage/app/public/petition_files/'.$name;
+        if (config('filesystems.default') === 's3') {
+            return response()->json([Storage::temporaryUrl(
+                $petition->file,
+                now()->addMinutes(5)
+            ),
+        ]);
+        }
 
-        return response()->download($pathToFile);
+        return response()->json([Storage::url($petition->file)]);
     }
 }

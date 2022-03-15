@@ -8,6 +8,7 @@ use App\Models\Patient;
 use App\Models\User;
 use App\Utilities\Random;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends Factory
@@ -57,6 +58,7 @@ class PetitionFactory extends Factory
                     ->doctor()
                     ->create(),
                 'status' => PetitionStatus::FINISHED->value,
+                'file' => Str::uuid().'.txt',
             ];
         });
     }
