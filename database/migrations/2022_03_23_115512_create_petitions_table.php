@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->foreignId('patient_id')->constrained('patients');
             $table->foreignId('doctor_id')->nullable()->constrained('users')->cascadeOnUpdate();
             $table->string('status');
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }

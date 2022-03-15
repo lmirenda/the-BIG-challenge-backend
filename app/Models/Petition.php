@@ -14,7 +14,8 @@ class Petition extends Model
         'symptoms',
         'doctor_id',
         'patient_id',
-        'status', ];
+        'status',
+        'file', ];
 
     protected $with = ['patient', 'doctor'];
 

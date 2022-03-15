@@ -5,27 +5,19 @@ namespace App\Http\Requests;
 use App\Enums\PetitionStatus;
 use App\Models\Petition;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
-class FinishPetitionRequest extends FormRequest
+class DownloadPetitionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
      * @return bool
      */
     public function authorize()
     {
         /** @var Petition $petition */
         $petition = $this->route('petition');
-        if (
-            $petition->status === PetitionStatus::TAKEN->value
-            && $petition->doctor_id == Auth::user()->id
-        ) {
-            return true;
-        }
 
-        return false;
+        return $petition->status === PetitionStatus::FINISHED->value;
     }
 
     /**
@@ -36,8 +28,7 @@ class FinishPetitionRequest extends FormRequest
     public function rules()
     {
         return [
-            //TODO: Validate txt file extension
-            'file' => 'required',
+            //
         ];
     }
 }
