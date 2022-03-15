@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Petitions\Patient;
 
 use App\Http\Requests\DownloadPetitionRequest;
 use App\Models\Petition;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 
 class DownloadPetitionController
@@ -15,7 +16,7 @@ class DownloadPetitionController
      * @param DownloadPetitionRequest $request
      * @return string
      */
-    public function __invoke(Petition $petition, DownloadPetitionRequest $request): string
+    public function __invoke(Petition $petition, DownloadPetitionRequest $request): JsonResponse
     {
         if (config('filesystems.default') === 's3') {
             return response()->json([Storage::temporaryUrl(
