@@ -14,7 +14,7 @@ class DownloadPetitionController
      *
      * @param Petition $petition
      * @param DownloadPetitionRequest $request
-     * @return string
+     * @return JsonResponse
      */
     public function __invoke(Petition $petition, DownloadPetitionRequest $request): JsonResponse
     {
