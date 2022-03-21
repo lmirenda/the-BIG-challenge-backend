@@ -22,7 +22,7 @@ class LoginControllerTest extends TestCase
     public function test_invalid_password()
     {
         $user = User::factory()->create();
-        $response = $this->postJson('api/login', ['email' => $user->email, 'password'=>123456]);
+        $response = $this->postJson('api/login', ['email' => $user->email, 'password'=>'']);
         $response->assertUnprocessable();
     }
 }
