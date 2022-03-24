@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\Petitions\Doctor\AcceptPetitionController;
 use App\Http\Controllers\Petitions\Doctor\DoctorAcceptedPetitionsIndex;
 use App\Http\Controllers\Petitions\Doctor\FinishPetitionController;
@@ -46,3 +47,4 @@ Route::middleware(['role:patient'])
     ->post('/petitions/create', CreatePetitionController::class);
 Route::middleware(['role:patient'])
     ->get('petitions/download/{petition}', DownloadPetitionController::class);
+Route::middleware('auth:sanctum')->post('/logout', LogoutController::class);
