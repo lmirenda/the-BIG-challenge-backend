@@ -2,8 +2,6 @@
 
 namespace Tests\Http\Controllers\Petitions\Patient;
 
-use App\Http\Controllers\Petitions\Patient\CreatePatientController;
-use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
@@ -26,7 +24,7 @@ class CreatePatientControllerTest extends TestCase
                 'patient_height' => 180,
                 'patient_weight' => 100,
                 'patient_phone' => '26000000',
-                'patient_other_info' => 'no other info'
+                'patient_other_info' => 'no other info',
             ])
             ->assertSuccessful()
             ->assertSee('data');

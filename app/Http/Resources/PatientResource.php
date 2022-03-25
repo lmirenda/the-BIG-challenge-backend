@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Patient;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PatientResource extends JsonResource
@@ -20,7 +19,7 @@ class PatientResource extends JsonResource
             'patient_height' => $this->patient_height,
             'patient_weight' => $this->patient_weight,
             'patient_phone' => $this->patient_phone,
-            'patient_other_info' => $this->patient_other_info
+            'patient_other_info' => $this->patient_other_info,
         ];
     }
 }
