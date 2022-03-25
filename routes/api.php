@@ -8,6 +8,7 @@ use App\Http\Controllers\Petitions\Doctor\DoctorAcceptedPetitionsIndex;
 use App\Http\Controllers\Petitions\Doctor\FinishPetitionController;
 use App\Http\Controllers\Petitions\Doctor\PatientsIndex;
 use App\Http\Controllers\Petitions\Doctor\PendingPetitionsIndex;
+use App\Http\Controllers\Petitions\Patient\CreatePatientController;
 use App\Http\Controllers\Petitions\Patient\CreatePetitionController;
 use App\Http\Controllers\Petitions\Patient\DownloadPetitionController;
 use App\Http\Controllers\Petitions\Patient\PetitionsIndexController;
@@ -48,3 +49,5 @@ Route::middleware(['role:patient'])
 Route::middleware(['role:patient'])
     ->get('petitions/download/{petition}', DownloadPetitionController::class);
 Route::middleware('auth:sanctum')->post('/logout', LogoutController::class);
+Route::middleware(['role:patient'])
+    ->post('/patient/create', CreatePatientController::class);
