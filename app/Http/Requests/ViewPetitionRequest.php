@@ -18,6 +18,7 @@ class ViewPetitionRequest extends FormRequest
     {
         /** @var Petition $petition */
         $petition = $this->route('petition');
+
         return $this->isDoctor($petition) || $this->isPatient($petition);
     }
 
