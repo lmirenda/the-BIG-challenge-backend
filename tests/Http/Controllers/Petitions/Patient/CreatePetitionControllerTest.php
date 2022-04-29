@@ -52,6 +52,6 @@ class CreatePetitionControllerTest extends TestCase
         ];
         $this
             ->postJson('api/petitions/create', $petitionData)
-            ->assertForbidden();
+            ->assertStatus(401);
     }
 }

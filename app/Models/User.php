@@ -44,6 +44,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $with = ['patientInformation'];
+
     public function patientInformation(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(Patient::class, 'user_id');
