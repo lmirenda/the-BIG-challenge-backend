@@ -11,7 +11,7 @@ class PendingPetitionsIndex extends Controller
 {
     public function __invoke(): JsonResponse
     {
-        $petition = Petition::where('status', PetitionStatus::PENDING->value) ->with('patient.user')->paginate(10);
+        $petition = Petition::where('status', PetitionStatus::PENDING->value)->with('patient.user')->paginate(10);
 
         return response()->json([$petition]);
     }
