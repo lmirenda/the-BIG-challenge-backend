@@ -12,7 +12,8 @@ class ViewPetitionController extends Controller
 {
     public function __invoke(ViewPetitionRequest $request, Petition $petition): JsonResponse
     {
+        $petitionWithUser = $petition->load('patient.user');
 
-        return response()->json($petition);
+        return response()->json($petitionWithUser);
     }
 }

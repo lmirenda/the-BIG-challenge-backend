@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\Petitions\Doctor\AcceptPetitionController;
 use App\Http\Controllers\Petitions\Doctor\DoctorAcceptedPetitionsIndex;
+use App\Http\Controllers\Petitions\Doctor\DoctorFinishedPetitionsIndex;
 use App\Http\Controllers\Petitions\Doctor\FinishPetitionController;
 use App\Http\Controllers\Petitions\Doctor\PatientsIndex;
 use App\Http\Controllers\Petitions\Doctor\PendingPetitionsIndex;
@@ -38,10 +39,12 @@ Route::middleware(['role:doctor','auth:sanctum'])
 Route::middleware(['role:doctor','auth:sanctum'])
     ->get('/patients', PatientsIndex::class);
 Route::middleware(['role:doctor','auth:sanctum'])
+    ->get('/petitions/finished', DoctorFinishedPetitionsIndex::class);
+Route::middleware(['role:doctor','auth:sanctum'])
     ->get('/petitions/accepted', DoctorAcceptedPetitionsIndex::class);
 Route::middleware(['role:doctor','auth:sanctum'])
     ->put('petitions/accept/{petition}', AcceptPetitionController::class);
-Route::middleware(['role:doctor'])
+Route::middleware(['role:doctor','auth:sanctum'])
     ->put('petitions/accepted/finish/{petition}', FinishPetitionController::class);
 Route::middleware(['auth:sanctum', 'role:patient'])
     ->get('/my/petitions', PetitionsIndexController::class);

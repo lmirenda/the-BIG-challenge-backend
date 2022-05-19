@@ -13,16 +13,16 @@ use Illuminate\Support\Str;
 
 class FinishPetitionController extends Controller
 {
-    public function __invoke(Petition $petition, FinishPetitionRequest $request): JsonResponse
+    public function __invoke(Petition $petition): JsonResponse
     {
-        $fileName = Str::uuid().'.txt';
-        $file = $request->file('file');
+//        $fileName = Str::uuid().'.txt';
+//        $file = $request->file('file');
 
-        Storage::put($fileName, $file);
+//        Storage::put($fileName, $file);
 
         $petition->update([
                 'status' => PetitionStatus::FINISHED->value,
-                'file' => $fileName,
+                'file' => Str::uuid().'.txt',
             ]);
 
         $user = $petition->patient->user;
