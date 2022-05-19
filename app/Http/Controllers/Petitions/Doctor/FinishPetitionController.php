@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Petitions\Doctor;
 use App\Enums\PetitionStatus;
 use App\Events\DoctorHasResponded;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FinishPetitionRequest;
 use App\Models\Petition;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;

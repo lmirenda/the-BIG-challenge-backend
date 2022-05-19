@@ -3,7 +3,6 @@
 namespace Tests\Http\Controllers\Petitions\Patient;
 
 use App\Models\Petition;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;

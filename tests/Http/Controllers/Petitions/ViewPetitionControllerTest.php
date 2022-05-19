@@ -2,7 +2,6 @@
 
 namespace Tests\Http\Controllers\Petitions;
 
-use App\Http\Controllers\Petitions\ViewPetitionController;
 use App\Models\Petition;
 use App\Models\User;
 use Database\Seeders\RoleSeeder;
@@ -26,8 +25,7 @@ class ViewPetitionControllerTest extends TestCase
 
         $this
             ->assertAuthenticated()
-            ->getJson('/api/petitions/' . $petition->id)
+            ->getJson('/api/petitions/'.$petition->id)
             ->assertSuccessful();
     }
-
 }
