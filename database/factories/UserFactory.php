@@ -2,11 +2,16 @@
 
 namespace Database\Factories;
 
+use App\Enums\UserType;
+use App\Models\User;
+use App\Utilities\Random;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Exceptions\RoleAlreadyExists;
+use Spatie\Permission\Models\Role;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends Factory
  */
 class UserFactory extends Factory
 {
@@ -20,9 +25,8 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+            'password' => Hash::make(123456),
+            'type' => Random::userType(),
         ];
     }
 
@@ -31,12 +35,33 @@ class UserFactory extends Factory
      *
      * @return static
      */
-    public function unverified()
+    public function patient()
     {
         return $this->state(function (array $attributes) {
             return [
-                'email_verified_at' => null,
+                'type' => UserType::PATIENT->value,
             ];
+        });
+    }
+
+    public function doctor()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => UserType::DOCTOR->value,
+            ];
+        });
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (User $user) {
+            try {
+                Role::create(['name' => $user->type]);
+            } catch (RoleAlreadyExists $exception) {
+                // Do nothing
+            }
+            $user->assignRole($user->type);
         });
     }
 }
