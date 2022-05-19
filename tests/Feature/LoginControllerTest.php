@@ -13,8 +13,7 @@ class LoginControllerTest extends TestCase
 
     public function test_registered_user_can_log_in()
     {
-        $user = User::factory()->create(['password'=>Hash::make(123456)]);
-        $user2 = User::factory()->create(['password'=>Hash::make(123456)]);
+        $user = User::factory()->patient()->create(['password'=>Hash::make(123456)]);
         $response = $this->postJson('api/login', ['email' => $user->email, 'password'=>123456]);
         $response->assertSuccessful();
     }

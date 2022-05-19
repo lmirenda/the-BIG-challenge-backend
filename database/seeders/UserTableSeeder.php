@@ -15,8 +15,8 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->doctor()->create()->assignRole(UserType::DOCTOR->value);
+        User::factory()->doctor()->create(['email' => 'doctor@lightit.io'])->assignRole(UserType::DOCTOR->value);
 
-        User::factory()->patient()->create()->assignRole(UserType::DOCTOR->value);
+        User::factory()->patient()->create(['email' => 'patient@lightit.io'])->assignRole(UserType::DOCTOR->value);
     }
 }
